@@ -989,9 +989,9 @@ latest-version@^2.0.0:
   dependencies:
     package-json "^2.0.0"
 
-lazy-req@^1.1.0:
+import-lazy@^1.1.0:
   version "1.1.0"
-  resolved "https://registry.yarnpkg.com/lazy-req/-/lazy-req-1.1.0.tgz#bdaebead30f8d824039ce0ce149d4daa07ba1fac"
+  resolved "https://registry.yarnpkg.com/import-lazy/-/import-lazy-1.1.0.tgz#bdaebead30f8d824039ce0ce149d4daa07ba1fac"
 
 levn@^0.3.0, levn@~0.3.0:
   version "0.3.0"
@@ -1642,7 +1642,7 @@ update-notifier@^1.0.0:
     configstore "^2.0.0"
     is-npm "^1.0.0"
     latest-version "^2.0.0"
-    lazy-req "^1.1.0"
+    import-lazy "^1.1.0"
     semver-diff "^2.0.0"
     xdg-basedir "^2.0.0"
 
