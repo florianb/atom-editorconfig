@@ -26,11 +26,11 @@
   "dependencies": {
     "camelcase-keys": "^4.1.0",
     "editorconfig": "^0.13.2",
-    "import-lazy": "^2.1.0",
+    "import-lazy": "^3.1.0",
     "pify": "^2.3.0"
   },
   "devDependencies": {
-    "xo": "*"
+    "xo": "^0.19.0"
   },
   "xo": {
     "globals": [
