@@ -12,10 +12,10 @@
   },
   "private": true,
   "engines": {
-    "atom": ">=1.13.0"
+    "atom": ">=1.24.0"
   },
   "scripts": {
-    "test": "xo && apm test"
+    "test": "apm test && xo"
   },
   "keywords": [
     "editorconfig",
@@ -26,12 +26,15 @@
   ],
   "dependencies": {
     "camelcase-keys": "^4.1.0",
-    "editorconfig": "^0.13.2",
+    "clone-deep": "^3.0.1",
+    "editorconfig": "^0.15.0",
     "import-lazy": "^3.1.0",
-    "pify": "^2.3.0"
+    "pify": "^3.0.0"
   },
   "devDependencies": {
-    "xo": "^0.19.0"
+    "execa": "^0.10.0",
+    "printen": "1.0.1-0",
+    "xo": "^0.20.3"
   },
   "xo": {
     "globals": [
@@ -45,11 +48,30 @@
       "import/prefer-default-export": "off"
     }
   },
+  "providedServices": {
+    "provide-editorconfig-settings": {
+      "description": "",
+      "versions": {
+        "1.0.0": "provideEditorconfigSettings"
+      }
+    }
+  },
   "consumedServices": {
     "status-bar": {
       "versions": {
         "^1.0.0": "consumeStatusBar"
       }
+    },
+    "provide-editorconfig-settings": {
+      "versions": {
+        "^1.0.0": "requestEditorconfigSetting"
+      }
     }
+  },
+  "__atomTestRunner": "./ava-runner",
+  "__ava": {
+    "require": [
+
+    ]
   }
 }

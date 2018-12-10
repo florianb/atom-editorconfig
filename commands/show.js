@@ -72,8 +72,4 @@ const init = () => {
 	}
 };
 
-const subscriber = () => {
-	atom.commands.add('atom-workspace', 'EditorConfig:show-state', init);
-};
-
-export {subscriber as default, init};
+export default init;

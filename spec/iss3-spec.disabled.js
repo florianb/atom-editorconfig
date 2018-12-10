@@ -14,6 +14,8 @@ const filePath = path.join(projectRoot, 'test.iss3');
 
 describe('when saving a file with trailing whitespaces', () => {
 	let textEditor;
+	let ecfg;
+
 	const textWithTrailingWhitespaces = 'I am Providence. \t\t  \n';
 	const textWithoutTraillingWhitespaces = 'I am Providence.\n';
 
@@ -24,6 +26,8 @@ describe('when saving a file with trailing whitespaces', () => {
 				atom.workspace.open(filePath)
 			]).then(results => {
 				textEditor = results[1];
+				const buffer = textEditor.getBuffer();
+				ecfg = results[0].mainModule.buffers.get(buffer);
 			})
 		);
 	});

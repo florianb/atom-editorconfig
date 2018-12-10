@@ -12,8 +12,16 @@
 
 import fs from 'fs';
 import path from 'path';
+import prepareEnvironment from './helpers';
 
 import {init as fixFile} from '../commands/fix';
+
+const envParams = {
+	files: {
+		base: path.join(__dirname, 'fixtures', 'base.txt')
+	}
+};
+
 
 const testPrefix = path.basename(__filename).split('-').shift();
 const projectRoot = path.join(__dirname, 'fixtures', testPrefix);
@@ -29,11 +37,11 @@ this is some test
 */
 I really
   /*
-   or this one!
+	or this one!
   */
   hope
   it
-    works better
+	 works better
   now
 `;
 
@@ -57,41 +65,14 @@ I really
 
 describe('editorconfig', () => {
 	let editor;
+	let pkg;
 
-	beforeEach(() => {
-		waitsForPromise(() =>
-			Promise.all([
-				atom.packages.activatePackage('editorconfig'),
-				atom.workspace.open(filePath)
-			]).then(results => {
-				editor = results.pop();
-			})
-		);
-	});
 
-	afterEach(() => {
-		// Remove the created fixture, if it exists
-		runs(() => {
-			fs.stat(filePath, (err, stats) => {
-				if (!err && stats.isFile()) {
-					fs.unlink(filePath);
-				}
-			});
-		});
-
-		waitsFor(() => {
-			try {
-				return fs.statSync(filePath).isFile() === false;
-			} catch (err) {
-				return true;
-			}
-		}, 5000, `removed ${filePath}`);
-	});
 
 	describe('EditorConfig:FixFile', () => {
 		it('should transform trailing soft-/tabs and preserve additional spaces', () => {
 			const buffer = editor.getBuffer();
-			const ecfg = buffer.editorconfig;
+			const ecfg = pkg.mainModule.buffers.get(buffer);
 
 			ecfg.settings.indent_style = 'tab'; // eslint-disable-line camelcase
 			ecfg.settings.indent_size = 2; // eslint-disable-line camelcase
